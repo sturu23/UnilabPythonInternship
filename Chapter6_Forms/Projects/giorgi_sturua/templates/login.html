@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+    <h1 align="center">Welcome To The Login</h1>
+    <form method="post">
+    <div class="position-absolute top-50 start-50 translate-middle">
+    {{ form.hidden_tag() }}
+    {{ form.username.label }} <br>
+    {{ form.username }} <br>
+    {{ form.password.label }} <br>
+    {{ form.password }}
+    <br>
+    <br>
+    {{ form.submit }}
+    </div>
+</form>
+
+{% endblock %}
