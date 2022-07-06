@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask_wtf import FlaskForm
 from wtforms.fields import StringField, SubmitField, PasswordField
 from forms import LoginForm, RegisterForm
@@ -21,9 +21,10 @@ def register():
         username = form.username.data
         password = form.password.data
         gmail = form.email.data
-        print(username,password,gmail)
+        confirm_password = form.confirm_password.data
+        print(username,password,gmail,confirm_password)
         return redirect(url_for('login'))
-    return render_template('register.html', form=form)
+    return render_template('register.html', form = form )
 
 
 @app.route('/login',methods=['GET','POST'])
@@ -33,7 +34,11 @@ def login():
         username = form.username.data
         password = form.password.data
         print(username,password)
+        session['username'] = username
         return redirect(url_for('home'))
+
+
+
     return render_template('login.html', form=form)
 
 @app.route('/home',methods=['GET','POST'])
